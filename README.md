@@ -1,6 +1,6 @@
 <div align="center">    
  
-# Machine Learning Engineer Coding Test  
+# InstaDeep - Machine Learning Engineer Coding Test  
 
 ![CI testing](https://github.com/PyTorchLightning/deep-learning-project-template/workflows/CI%20testing/badge.svg?branch=master&event=push)
 
