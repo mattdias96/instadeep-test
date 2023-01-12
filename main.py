@@ -9,8 +9,6 @@ from models.protcnn import ProtCNN
 
 def main():
 
-    print("here")
-    
     parser = argparse.ArgumentParser()
 
     # Add command line arguments
@@ -43,7 +41,7 @@ def main():
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Initialize the model
-    model = ProtCNN(num_classes) # Create a class for this and make it flexible later 
+    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # Create a class for this and make it flexible later 
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module

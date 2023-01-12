@@ -9,7 +9,7 @@ class ProtCNN(pl.LightningModule):
     A PyTorch Lightning LightningModule subclass which represents a 1D convolutional neural network
     for protein sequence classification
     '''
-    def __init__(self, num_classes:int):
+    def __init__(self, num_classes:int, lr, momentum, weight_decay, milestones, gamma):
         super().__init__()
         # Define architecture of the model
         self.model = torch.nn.Sequential(
@@ -29,6 +29,13 @@ class ProtCNN(pl.LightningModule):
         # Initialize accuracy metrics for training and validation
         self.train_acc = torchmetrics.Accuracy()
         self.valid_acc = torchmetrics.Accuracy()
+
+        # Define optimization parameters
+        self.lr = lr
+        self.momentum = momentum
+        self.weight_decay = weight_decay
+        self.milestones = milestones
+        self.gamma = gamma
         
     def forward(self, x:torch.Tensor):
         # Performs the forward pass through the model
@@ -78,7 +85,7 @@ class ProtCNN(pl.LightningModule):
 
         return acc
         
-    def configure_optimizers(self, lr, momentum, weight_decay, milestones, gamma)->dict:
+    def configure_optimizers(self)->dict:
         """
         Configures the optimizer and learning rate scheduler for a PyTorch model.
         
@@ -93,8 +100,8 @@ class ProtCNN(pl.LightningModule):
             Dict: A dictionary containing the optimizer and the learning rate scheduler.
         """
         # Define the optimizer and learning rate scheduler
-        optimizer = torch.optim.SGD(self.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
-        lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=milestones, gamma=gamma)
+        optimizer = torch.optim.SGD(self.parameters(), lr=self.lr, momentum=self.momentum, weight_decay=self.weight_decay)
+        lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.milestones, gamma=self.gamma)
 
         return {
             "optimizer": optimizer,
