@@ -22,7 +22,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         
     """
 
-    def __init__(self, word2id, fam2label, max_len, data_path, split):
+    def __init__(self, word2id:dict, fam2label:dict, max_len:int, data_path:str, split:str):
         self.word2id = word2id
         self.fam2label = fam2label
         self.max_len = max_len
@@ -35,7 +35,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         """
         return len(self.data)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index:int):
         """
         Returns a dictionary containing the processed sequence and the target label.
         
@@ -52,7 +52,7 @@ class SequenceDataset(torch.utils.data.Dataset):
        
         return {'sequence': seq, 'target' : label}
     
-    def preprocess(self, text):
+    def preprocess(self, text:str):
         """
         Preprocess the sequence, by taking the slice of the text (sequence) of `max_len` length,
         encodes it into IDs and pads it, and one-hot encodes the sequence and returns it in the permuted form.

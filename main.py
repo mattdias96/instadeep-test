@@ -5,7 +5,7 @@ import lightning as pl
 
 from helper import loadData, buildLabels, buildVocab
 from data import reader
-from models import ProtCNN
+from models.protcnn import ProtCNN
 
 def main():
     
