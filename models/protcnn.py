@@ -78,8 +78,7 @@ class ProtCNN(pl.LightningModule):
 
         return acc
         
-    def configure_optimizers(self, lr = 1e-2, momentum = 0.9, weight_decay = 1e-2, 
-                                milestones = [5, 8, 10, 12, 14, 16, 18, 20], gamma = 0.9)->dict:
+    def configure_optimizers(self, lr, momentum, weight_decay, milestones, gamma)->dict:
         """
         Configures the optimizer and learning rate scheduler for a PyTorch model.
         
