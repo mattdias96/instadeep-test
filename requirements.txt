@@ -1,7 +1,7 @@
 pesq==0.0.4
 numpy==1.21.6
 pandas==1.3.5
-lightning==1.8.6
+lightning>=1.7
 seaborn==0.11.2
 tensorboard==2.2.2
 torch==1.13.1
