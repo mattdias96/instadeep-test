@@ -4,4 +4,5 @@ lightning==1.8.6
 seaborn==0.11.2
 tensorboard==2.2.2
 torch==1.13.1
-torchmetrics==0.10.3
+torchmetrics==0.6.0
+
