@@ -1,7 +1,7 @@
 import argparse
 import json
 
-import lightning as pl
+import pytorch-lightning as pl
 
 from helper import loadData, buildLabels, buildVocab
 from data import reader
