@@ -3,7 +3,7 @@ import json
 
 import lightning as pl
 
-from . import loadData, buildLabels, buildVocab
+from helper import loadData, buildLabels, buildVocab
 from data import reader
 from models import ProtCNN
 
