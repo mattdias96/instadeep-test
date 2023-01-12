@@ -25,6 +25,8 @@ def main():
     parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
     parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
     parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
+    # optimizer
+    # learning rate scheduler format
 
     # Parse the command line arguments
     args = parser.parse_args()
