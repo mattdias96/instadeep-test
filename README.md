@@ -54,12 +54,3 @@ trainer.fit(model, train, val)
 trainer.test(test_dataloaders=test)
 ```
 
-### Citation   
-```
-@article{YourName,
-  title={Your Title},
-  author={Your team},
-  journal={Location},
-  year={Year}
-}
-```   
