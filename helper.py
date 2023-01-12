@@ -1,7 +1,7 @@
 import torch
 import pandas as pd
 
-from data import SequenceDataset
+from data.dataset import SequenceDataset
 
 def loadData(num_workers, word2id, fam2label, seq_max_len, data_dir, batch_size)->dict:
     """
