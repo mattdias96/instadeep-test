@@ -1,5 +1,5 @@
 import torch
-import pytorch-lightning as pl
+import lightning as pl
 import torchmetrics
 
 from models import *
