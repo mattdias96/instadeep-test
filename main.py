@@ -8,6 +8,8 @@ from data import reader
 from models.protcnn import ProtCNN
 
 def main():
+
+    print("here")
     
     parser = argparse.ArgumentParser()
 
