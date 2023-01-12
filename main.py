@@ -1,6 +1,12 @@
 import argparse
 import json
 
+import lightning as pl
+
+from . import loadData, buildLabels, buildVocab
+from data import reader
+from models import ProtCNN
+
 def main():
     
     parser = argparse.ArgumentParser()
@@ -26,17 +32,19 @@ def main():
     
     # Read train data files
     train_data, train_targets = reader("train", args.dataset_path)
+    # Define dictionary from AA strings to unique integers
+    word2id = buildVocab(train_data)
     # Define dictionary mapping unique targets to consecutive integers
     fam2label = buildLabels(train_targets)
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Initialize the model
-    prot_cnn = ProtCNN(num_classes)
+    model = ProtCNN(num_classes) # Create a class for this and make it flexible later 
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module
-    trainer = pl.Trainer(gpus=parser.gpus, max_epochs=parser.epochs)
+    trainer = pl.Trainer(gpus=args.gpus, max_epochs=args.epochs)
     # Load the data
-    train_loader, dev_loader, test_loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
+    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
     # Fit model
-    trainer.fit(prot_cnn, train_loader, dev_loader)
+    trainer.fit(model, loader['train'], loader['dev'])
