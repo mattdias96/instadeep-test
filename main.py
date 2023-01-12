@@ -53,3 +53,6 @@ def main():
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
     print("test")
+
+if __name__ == "__main__":
+    main()
