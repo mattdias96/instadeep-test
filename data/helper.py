@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 from collections import Counter
 
 data_dir = '/content/drive/MyDrive/InstaDeep/random_split' # this will be chosen by the user
@@ -95,3 +96,4 @@ def build_vocab(data, rare_AA_count = 4)->Dict[str,int]:
     word2id['<unk>'] = 1
     
     return word2id
+
