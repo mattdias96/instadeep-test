@@ -76,6 +76,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         # Convert list into tensor
         seq = torch.from_numpy(np.array(seq))
             
+        print(seq)
         # One-hot encode    
         one_hot_seq = torch.nn.functional.one_hot(seq, num_classes=len(self.word2id)) #,  
 
