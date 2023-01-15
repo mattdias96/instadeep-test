@@ -66,7 +66,7 @@ class ProtCNN(pl.LightningModule):
 
         return loss
     
-    def validation_step(self, batch:dict, **kwargs)->torch.Tensor:
+    def validation_step(self, batch:dict, batch_idx:int)->torch.Tensor:
         """
         Perform a forward pass on the validation input and compute the accuracy of the model's predictions.
         
