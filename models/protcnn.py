@@ -54,6 +54,8 @@ class ProtCNN(pl.LightningModule):
         """
         # Get input and target from the batch
         x, y = batch['sequence'], batch['target']
+        print("after batch")
+        print(x.float().shape)
         # Perform the forward pass and compute the loss
         y_hat = self(x)
         loss = F.cross_entropy(y_hat, y)
