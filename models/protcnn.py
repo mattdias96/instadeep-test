@@ -39,6 +39,7 @@ class ProtCNN(pl.LightningModule):
         
     def forward(self, x:torch.Tensor):
         # Performs the forward pass through the model
+        print(x.float().shape)
         return self.model(x.float())
     
     def training_step(self, batch:dict)->torch.Tensor:
