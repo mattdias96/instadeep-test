@@ -36,7 +36,7 @@ def main():
     # Read train data files
     train_data, train_targets = reader("train", args.data_dir)
     # Define dictionary from AA strings to unique integers
-    word2id = buildVocab(train_data, args.rare_AA_count)
+    word2id = buildVocab(train_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
     fam2label = buildLabels(train_targets)
     # Define number of classes in the dataset
