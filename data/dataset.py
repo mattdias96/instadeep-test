@@ -75,18 +75,11 @@ class SequenceDataset(torch.utils.data.Dataset):
                 
         # Convert list into tensor
         seq = torch.from_numpy(np.array(seq))
-
-        print("seq shape pre")
-        print(seq.shape)
-        print(len(self.word2id))
             
         # One-hot encode    
         one_hot_seq = torch.nn.functional.one_hot(seq.to(torch.int64), num_classes=len(self.word2id), ) 
 
         # Permute channel (one-hot) dim first
         one_hot_seq = one_hot_seq.permute(1,0)
-
-        print("seq shape post")
-        print(one_hot_seq.shape)
 
         return one_hot_seq
