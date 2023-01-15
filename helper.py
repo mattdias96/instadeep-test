@@ -63,13 +63,13 @@ def buildLabels(targets:pd.Series)->dict[str,int]:
         
     return fam2label
 
-def buildVocab(data, rare_AA_count = 4)->dict[str,int]:
+def buildVocab(data, rare_AA_count)->dict[str,int]:
     """
     Builds a vocabulary of amino acids from a list of sequences and creates a mapping from AA strings to unique integers.
     
     Parameters:
         - data (list): a list of sequences, where each sequence is a string of amino acids.
-        - rare_AA_count (int, optional): The number of rare AAs to remove from the vocabulary. Defaults to 4.
+        - rare_AA_count (int, optional): The number of rare AAs to remove from the vocabulary (defaults to 4).
         
     Returns:
         - word2id (dict): a dictionary that maps each unique AA in data to a unique integer. The integers are assigned in the order that the AAs appear in the data, starting from 2.
@@ -95,6 +95,11 @@ def buildVocab(data, rare_AA_count = 4)->dict[str,int]:
     word2id = {w: i for i, w in enumerate(unique_AAs, start=2)}
     word2id['<pad>'] = 0
     word2id['<unk>'] = 1
+
+    print("len unique AAs")
+    print(len(unique_AAs))
+    print("len word2id")
+    print(len(word2id))
     
     return word2id
     

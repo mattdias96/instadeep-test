@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
     parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
     parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
+    parser.add_argument('--rare_aa_count', type=int, default=4, help='number of Amino Acids to be considered rare')
     # optimizer
     # learning rate scheduler format
 
@@ -35,7 +36,7 @@ def main():
     # Read train data files
     train_data, train_targets = reader("train", args.data_dir)
     # Define dictionary from AA strings to unique integers
-    word2id = buildVocab(train_data)
+    word2id = buildVocab(train_data, args.rare_AA_count)
     # Define dictionary mapping unique targets to consecutive integers
     fam2label = buildLabels(train_targets)
     # Define number of classes in the dataset
