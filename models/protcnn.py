@@ -39,7 +39,6 @@ class ProtCNN(pl.LightningModule):
         
     def forward(self, x:torch.Tensor):
         # Performs the forward pass through the model
-        print(x.float().shape)
         return self.model(x.float())
     
     def training_step(self, batch:dict)->torch.Tensor:
@@ -54,8 +53,6 @@ class ProtCNN(pl.LightningModule):
         """
         # Get input and target from the batch
         x, y = batch['sequence'], batch['target']
-        print("after batch")
-        print(x.float().shape)
         # Perform the forward pass and compute the loss
         y_hat = self(x)
         loss = F.cross_entropy(y_hat, y)
