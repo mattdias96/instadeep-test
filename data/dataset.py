@@ -29,13 +29,13 @@ class SequenceDataset(torch.utils.data.Dataset):
         
         self.data, self.label = reader(split, data_path)
         
-    def __len__(self):
+    def __len__(self)->int:
         """
         Returns the length of the dataset, which is the number of sequences.
         """
         return len(self.data)
 
-    def __getitem__(self, index:int):
+    def __getitem__(self, index:int)->dict:
         """
         Returns a dictionary containing the processed sequence and the target label.
         
@@ -52,7 +52,7 @@ class SequenceDataset(torch.utils.data.Dataset):
        
         return {'sequence': seq, 'target' : label}
     
-    def preprocess(self, text:str):
+    def preprocess(self, text:str)->torch.Tensor:
         """
         Preprocess the sequence, by taking the slice of the text (sequence) of `max_len` length,
         encodes it into IDs and pads it, and one-hot encodes the sequence and returns it in the permuted form.

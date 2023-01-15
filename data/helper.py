@@ -27,7 +27,7 @@ def reader(partition:str, data_path:str)->tuple():
 
     return all_data["sequence"], all_data["family_accession"]
 
-def get_amino_acid_frequencies(data: list[str])->pd.DataFrame:
+def get_amino_acid_frequencies(data: list)->pd.DataFrame:
     """
     Accepts a list of protein sequences and calculate the frequency of each amino acid in it
     

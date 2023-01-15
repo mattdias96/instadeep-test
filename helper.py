@@ -45,7 +45,7 @@ def loadData(num_workers, word2id, fam2label, seq_max_len, data_dir, batch_size)
 
     return dataloaders
 
-def buildLabels(targets:pd.Series)->dict[str,int]:
+def buildLabels(targets:pd.Series)->dict:
     """
     Creates a dictionary which maps the unique targets in the input pandas Series to consecutive integers starting from 1 and an additional key, specified by the input unknown_token, with a value of 0.
     Prints the number of labels present in the resulting dictionary.
@@ -63,7 +63,7 @@ def buildLabels(targets:pd.Series)->dict[str,int]:
         
     return fam2label
 
-def buildVocab(data, rare_AA_count)->dict[str,int]:
+def buildVocab(data, rare_AA_count)->dict:
     """
     Builds a vocabulary of amino acids from a list of sequences and creates a mapping from AA strings to unique integers.
     

@@ -39,7 +39,7 @@ class ResidualBlock(torch.nn.Module):
         self.conv2 = torch.nn.Conv1d(in_channels=out_channels, out_channels=out_channels, 
                                kernel_size=3, bias=False, padding=1)
         
-    def forward(self, x):
+    def forward(self, x)->torch.Tensor:
         # Execute the required layers and functions
         activation = F.relu(self.bn1(x))
         x1 = self.conv1(activation)
