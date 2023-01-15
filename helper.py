@@ -95,11 +95,6 @@ def buildVocab(data, rare_AA_count)->dict[str,int]:
     word2id = {w: i for i, w in enumerate(unique_AAs, start=2)}
     word2id['<pad>'] = 0
     word2id['<unk>'] = 1
-
-    print("len unique AAs")
-    print(len(unique_AAs))
-    print("len word2id")
-    print(len(word2id))
-    
+   
     return word2id
     
