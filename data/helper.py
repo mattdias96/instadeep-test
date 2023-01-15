@@ -5,7 +5,7 @@ from collections import Counter
 
 data_dir = '/content/drive/MyDrive/InstaDeep/random_split' # this will be chosen by the user
 
-def reader(partition:str, data_path:str)->tuple[pd.Series, pd.Series]:
+def reader(partition:str, data_path:str)->tuple(pd.Series, pd.Series):
     """
     Reads files from a specified partition within a given data path, loads the contents of those files into a Pandas DataFrame,
     concatenates all the dataframe into single one, and finally returns 2 specific columns of
