@@ -82,4 +82,7 @@ class SequenceDataset(torch.utils.data.Dataset):
         # Permute channel (one-hot) dim first
         one_hot_seq = one_hot_seq.permute(1,0)
 
+        print("seq shape")
+        print(one_hot_seq.shape)
+
         return one_hot_seq

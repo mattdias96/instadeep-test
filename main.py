@@ -49,8 +49,6 @@ def main():
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
     # Fit model
-    print("shape of train loader")
-    print(loader["train"].shape)
     trainer.fit(model, loader['train'], loader['dev'])
 
 if __name__ == "__main__":
