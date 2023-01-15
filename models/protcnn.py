@@ -66,17 +66,17 @@ class ProtCNN(pl.LightningModule):
 
         return loss
     
-    def validation_step(self, batch:dict)->torch.Tensor:
+    def validation_step(self, batch:dict, **kwargs)->torch.Tensor:
         """
         Perform a forward pass on the validation input and compute the accuracy of the model's predictions.
         
         Parameters:
         - batch (dict): a dictionary containing the validation data and target
-        - batch_idx (int): the index of the current batch in the validation data
         
         Returns:
         - acc (torch.Tensor): the accuracy of the model's predictions on the current batch
         """
+        # - batch_idx (int): the index of the current batch in the validation data (not used by our function but required )
         x, y = batch['sequence'], batch['target']
         y_hat = self(x)
         pred = torch.argmax(y_hat, dim=1)        
