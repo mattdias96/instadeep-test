@@ -30,7 +30,7 @@ class TestData(unittest.TestCase):
                 [0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
                 [0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
                 [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]]],
-            dtype=torch.int64)
+            dtype=torch.int64).permute(1,0)
         print("left type")
         print(SequenceDataset.preprocess(self, text))
         print("right type")
