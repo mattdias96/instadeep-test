@@ -2,6 +2,7 @@ import torch
 import pandas as pd
 from tqdm import tqdm
 import numpy as np
+from itertools import islice
 
 from data.dataset import SequenceDataset
 
@@ -129,8 +130,9 @@ def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->li
     """
     preds = []
     with torch.no_grad():
-        for i, batch in tqdm(enumerate(test_loader)):
+        for i, batch in tqdm(islice(enumerate(test_loader), 10)):
             x, _ = batch['sequence'], batch['target']
+            print(x.shape)
             y_hat = model(x)
             pred = torch.argmax(y_hat, dim=1, keepdim = True) 
             preds.append(pred)
