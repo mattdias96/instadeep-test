@@ -25,8 +25,8 @@ help:
 build:
 	docker build -t my_image .
 
-lint: venv
-	python -m pylint main.py
+lint: 
+	python -m pylint train.py
 
 # Run the train command inside the container
 train: 
