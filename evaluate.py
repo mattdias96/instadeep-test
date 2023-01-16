@@ -24,11 +24,12 @@ def main():
     parser.add_argument('--weight-decay', type=float, default=1e-2, help='weight decay of the optimizer')
     parser.add_argument('--milestones', type=list, default=[5, 8, 10, 12, 14, 16, 18, 20], help='milestones of the lr scheduler')
     parser.add_argument('--gamma', type=float, default=0.9, help='gamma parameter of the lr scheduler')
+    parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
 
     # Parse the command line arguments
     args = parser.parse_args()
     # Read train data files
-    valid_data, valid_targets = reader("test", args.data_dir) # change this in the reader function later
+    valid_data, valid_targets = reader("train", args.data_dir) # change this in the reader function later
     # Define dictionary from AA strings to unique integers
     word2id = buildVocab(valid_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
@@ -37,7 +38,7 @@ def main():
     num_classes = len(fam2label)
     print(num_classes)
     # Retrieve pretrained model
-    model = ProtCNN(17930, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
+    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
     model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
