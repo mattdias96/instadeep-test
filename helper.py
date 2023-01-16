@@ -1,5 +1,6 @@
 import torch
 import pandas as pd
+from tqdm import tqdm
 
 from data.dataset import SequenceDataset
 
@@ -102,13 +103,13 @@ def evaluateModel(model, test_loader)->float:
     #model.eval()
     accs = []
     with torch.no_grad():
-        for batch in test_loader:
+        for batch in tqdm(test_loader):
             #inputs, labels = data
             #inputs, labels = inputs.to(device), labels.to(device)
             #outputs = model(inputs)
             #_, pred = torch.max(outputs.data, 1)
             #total += labels.size(0)
             #correct += (predicted == labels).sum().item()
-            acc = model.validation_step(batch, 0) # this zero doesnt matter
+            acc = model.validation_step(batch, 0) # this zero doesnt matter # create logging boolean
             accs.append(acc)
     return accs.mean()
