@@ -48,11 +48,11 @@ class TestData(unittest.TestCase):
         #print(expected_output)
         self.assertTrue(torch.allclose(SequenceDataset.preprocess(self, text), expected_output, rtol=1e-5, atol=1e-5))
 
-    def testReaderFunction(self, dir_path = "\Users\mathe\Documents\random_split"):
+    def testReaderFunction(self):
         """
         A test for the test reader function.
         """
-        train_data, train_targets = reader("train", dir_path)
+        train_data, train_targets = reader("train", "/Users/mathe/Documents/random_split") # change this later
         self.assertIsInstance(train_data, pd.Series)
         self.assertIsInstance(train_targets, pd.Series)
         self.assertGreater(len(train_data), 0)
