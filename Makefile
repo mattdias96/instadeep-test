@@ -29,16 +29,16 @@ lint: venv
 	python -m pylint main.py
 
 # Run the train command inside the container
-train: build
-	docker run --rm -v $(PWD):/app -it my_image python train.py --param1 value1 --param2 value2
+train: 
+	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
 
 # Run the evaluate command inside the container
-evaluate: build
-	docker run --rm -v $(PWD):/app -it my_image python evaluate.py --param1 value1 --param2 value2
+evaluate: 
+	python evaluate.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
 
 # Run the predict command inside the container
 predict: 
 	python predict.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
-
+# Test functions command inside the container
 test:
 	python -m unittest discover -s tests/ -p "test*.py"

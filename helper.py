@@ -132,7 +132,6 @@ def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->li
     with torch.no_grad():
         for i, batch in tqdm(enumerate(test_loader)):
             x, _ = batch['sequence'], batch['target']
-            print(x.shape)
             y_hat = model(x)
             pred = torch.argmax(y_hat, dim=1, keepdim = True) 
             preds.append(pred)
