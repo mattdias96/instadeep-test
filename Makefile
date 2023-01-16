@@ -39,9 +39,6 @@ evaluate: build
 # Run the predict command inside the container
 predict: build
 	docker run --rm -v $(PWD):/app -it my_image python predict.py --param1 value1 --param2 value2
-You can then run these commands by running make train, make test, make evaluate, and make predict on your local machine. The build target is a dependency for all other targets, so it will be run automatically if necessary. The --param1 value1 --param2 value2 are examples of parameters that can be passed to the command.
-
-Makefile is a simple way to automate repetitive tasks, such as building and deploying code, while the Dockerfile is used to build an image of your application that can run in a container. A makefile allows you to run specific commands (like building, testing and deploying) in the context of the current project, while Dockerfiles are used to create a consistent and reproducible environment for your application to run in.
 
 test:
 	python -m unittest discover -s tests/ -p "test*.py"
