@@ -21,7 +21,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=3, help='number of training epochs')
     parser.add_argument('--batch_size', type=int, default=500, help='batch size')
     parser.add_argument('--model-path', type=str, default='', help='path to save the trained model')
-    parser.add_argument('--data_dir', type=str, default='', help='path to the training dataset')
+    parser.add_argument('--train_dir', type=str, default='', help='path to the training dataset')
     parser.add_argument('--gpus', type=int, default=1, help='1 if GPU is used, 0 if CPU is used')
     parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
     parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
@@ -34,7 +34,7 @@ def main():
     # Parse the command line arguments
     args = parser.parse_args()
     # Read train data files
-    train_data, train_targets = reader("train", args.data_dir)
+    train_data, train_targets = reader("train", args.train_dir)
     # Define dictionary from AA strings to unique integers
     word2id = buildVocab(train_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
@@ -48,7 +48,7 @@ def main():
     # Initialize trainer module
     trainer = pl.Trainer(gpus=args.gpus, max_epochs=args.epochs)
     # Load the data
-    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
+    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.train_dir, args.batch_size)
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
     # Save model
