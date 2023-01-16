@@ -37,7 +37,7 @@ def main():
     num_classes = len(fam2label)
     print(num_classes)
     # Retrieve pretrained model
-    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
+    model = ProtCNN(num_classes=17930, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
     model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
