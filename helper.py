@@ -89,7 +89,7 @@ def buildVocab(data:list, rare_AA_count:int)->dict:
         assigned the integers 0 and 1, respectively.
     """
     # Build the vocabulary
-    voc = dict()
+    voc = {}
     for sequence in data:
         for aa in sequence:
             if aa not in voc:
