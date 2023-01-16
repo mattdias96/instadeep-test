@@ -40,7 +40,7 @@ class TestModels(unittest.TestCase):
         """
         A unit test for the ProteinCNN forward function
         """
-        num_classes = 17930 #4
+        num_classes = 17930
         lr = 0.1
         momentum = 0.9
         weight_decay = 0.01
@@ -51,7 +51,7 @@ class TestModels(unittest.TestCase):
 
         # Check if the output has the expected shape
         output = protcnn(x)
-        self.assertEqual(output.shape, torch.Size([2, num_classes]))
+        self.assertEqual(output.shape, torch.Size([500, num_classes]))
 
         # Check if the output is the result of the forward pass through the defined model
         self.assertTrue(torch.allclose(output, protcnn.model(x.float())))
@@ -61,7 +61,7 @@ class TestModels(unittest.TestCase):
         An integration test for the ResidualBlock, Lambda and ProteinCNN functions
         """
         # Define input data
-        x = torch.randn(22, 128, 10)
+        x = torch.randn(500, 22, 120)
         
         # Instantiate ResidualBlock, Lambda and ProtCNN
         residual_block = ResidualBlock(128, 128, dilation=2)
@@ -78,5 +78,5 @@ class TestModels(unittest.TestCase):
         output = protcnn(x)
         
         # Assert shape of output
-        self.assertEqual(output.shape, (1, 10))
+        self.assertEqual(output.shape, (500, 10))
 
