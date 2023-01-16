@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	python -m pylint --recursive data
+	python -m pylint data
 
 # Run the train command inside the container
 train:
