@@ -1,3 +1,8 @@
+"""
+This module contains unit tests
+for methods available in the models
+directory
+"""
 import unittest
 import torch
 import torch.nn.functional as F
@@ -33,8 +38,25 @@ class TestModels(unittest.TestCase):
         output = residual_block(x)
         self.assertEqual(output.shape, torch.Size([2, out_channels, 10]))
 
-        # Check if the output is a sum of the input and the result of the convolutional layers
-        self.assertTrue(torch.allclose(output, x + residual_block.conv2(F.relu(residual_block.bn2(residual_block.conv1(F.relu(residual_block.bn1(x))))))))
+        # Check if the output is a sum of the input and the result of the
+        #  convolutional layers
+        self.assertTrue(torch.allclose(
+                        output,
+                        x + residual_block.conv2(
+                                F.relu(
+                                    residual_block.bn2(
+                                        residual_block.conv1(
+                                            F.relu(
+                                                residual_block.bn1(
+                                                    x
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
 
     def testProteinCNNForward(self):
         """
@@ -47,12 +69,14 @@ class TestModels(unittest.TestCase):
         milestones = [5,10]
         gamma = 0.1
         x = torch.randn(500, 22, 120)
-        protcnn = ProtCNN(num_classes, lr, momentum, weight_decay, milestones, gamma)
+        protcnn = ProtCNN(num_classes, lr, momentum,
+                          weight_decay, milestones, gamma)
 
         # Check if the output has the expected shape
         output = protcnn(x)
         self.assertEqual(output.shape, torch.Size([500, num_classes]))
 
-        # Check if the output is the result of the forward pass through the defined model
+        # Check if the output is the result of the forward pass
+        # through the defined model
         self.assertTrue(torch.allclose(output, protcnn.model(x.float())))
 

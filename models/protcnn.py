@@ -1,3 +1,9 @@
+"""
+This module contains the ProtCNN class
+and associated methods. This class is used
+to run the ProtCNN model as described in
+https://www.biorxiv.org/content/10.1101/626507v3.full
+"""
 import torch
 import lightning as pl
 import torchmetrics
@@ -9,7 +15,8 @@ class ProtCNN(pl.LightningModule):
     A PyTorch Lightning LightningModule subclass which represents a 1D convolutional neural network
     for protein sequence classification
     '''
-    def __init__(self, num_classes:int, lr:float, momentum:float, weight_decay:float, milestones:list, gamma:float, num_aa=22): 
+    def __init__(self, num_classes:int, lr:float, momentum:float, weight_decay:float,
+                 milestones:list, gamma:float, num_aa=22):
         super().__init__()
         # Define architecture of the model
         self.model = torch.nn.Sequential(
@@ -36,11 +43,11 @@ class ProtCNN(pl.LightningModule):
         self.weight_decay = weight_decay
         self.milestones = milestones
         self.gamma = gamma
-        
+
     def forward(self, x:torch.Tensor):
         # Performs the forward pass through the model
         return self.model(x.float())
-    
+
     def training_step(self, batch:dict)->torch.Tensor:
         """
         This function performs a single training step on a batch of data.
@@ -65,44 +72,48 @@ class ProtCNN(pl.LightningModule):
         self.log('train_acc', self.train_acc, on_step=True, on_epoch=True)
 
         return loss
-    
+
     def validation_step(self, batch:dict, batch_idx:int, logging = True)->torch.Tensor:
         """
-        Perform a forward pass on the validation input and compute the accuracy of the model's predictions.
-        
+        Perform a forward pass on the validation input and compute the accuracy of the
+        model's predictions.
+
         Parameters:
         - batch (dict): a dictionary containing the validation data and target
-        
+        - batch_idx (int): the index of the current batch in the validation data
+        (not used by our function but required )
+
         Returns:
         - acc (torch.Tensor): the accuracy of the model's predictions on the current batch
         """
-        # - batch_idx (int): the index of the current batch in the validation data (not used by our function but required )
         x, y = batch['sequence'], batch['target']
         y_hat = self(x)
-        pred = torch.argmax(y_hat, dim=1)        
+        pred = torch.argmax(y_hat, dim=1)
         acc = self.valid_acc(pred, y)
         if logging:
             self.log('valid_acc', self.valid_acc, on_step=False, on_epoch=True)
 
         return acc
-        
+
     def configure_optimizers(self)->dict:
         """
         Configures the optimizer and learning rate scheduler for a PyTorch model.
-        
+
         Parameters:
             lr (float, optional): The initial learning rate for the optimizer.
             momentum (float, optional): The momentum value to use for the optimizer.
             weight_decay (float, optional): weight decay for optimizer.
-            milestones (List[int], optional): The milestones for learning rate decay. 
+            milestones (List[int], optional): The milestones for learning rate decay.
             gamma (float, optional): The factor by which the learning rate will be reduced.
 
         Returns:
             Dict: A dictionary containing the optimizer and the learning rate scheduler.
         """
         # Define the optimizer and learning rate scheduler
-        optimizer = torch.optim.SGD(self.parameters(), lr=self.lr, momentum=self.momentum, weight_decay=self.weight_decay)
-        lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.milestones, gamma=self.gamma)
+        optimizer = torch.optim.SGD(self.parameters(), lr=self.lr, momentum=self.momentum,
+                                    weight_decay=self.weight_decay)
+        lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.milestones,
+                                                            gamma=self.gamma)
 
         return {
             "optimizer": optimizer,

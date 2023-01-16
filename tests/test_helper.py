@@ -1,3 +1,8 @@
+"""
+This module contains unit tests
+for methods available in the helper
+file
+"""
 import unittest
 import pandas as pd
 import torch
@@ -13,7 +18,8 @@ class TestHelper(unittest.TestCase):
         """
         A test to test the functionality of the buildVocab function
         """
-        # Test that the buildVocab function correctly builds a vocabulary from AA strings to unique integers
+        # Test that the buildVocab function correctly builds a vocabulary
+        # from AA strings to unique integers
         train_data = ["AAA", "AAC", "AGG"]
         word2id = buildVocab(train_data, 1)
         self.assertIsInstance(word2id, dict)
@@ -47,7 +53,8 @@ class TestHelper(unittest.TestCase):
         data_dir = "/Users/mathe/Documents/random_split" # change this
         batch_size = 8
 
-        dataloaders = loadData(num_workers, word2id, fam2label, seq_max_len, data_dir, batch_size)
+        dataloaders = loadData(num_workers, word2id, fam2label,
+                               seq_max_len, data_dir, batch_size)
 
         self.assertIsInstance(dataloaders, dict)
         self.assertIsInstance(dataloaders['train'], torch.utils.data.DataLoader)
@@ -56,5 +63,5 @@ class TestHelper(unittest.TestCase):
         self.assertEqual(dataloaders['train'].batch_size, batch_size)
         self.assertEqual(dataloaders['dev'].batch_size, batch_size)
         self.assertEqual(dataloaders['test'].batch_size, batch_size)
-    
+
     # Add good tests for evaluate and predict if have time
