@@ -31,6 +31,10 @@ class TestData(unittest.TestCase):
                 [0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
                 [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]]],
             dtype=torch.float32)
+        print("left type")
+        print(SequenceDataset.preprocess(self, text))
+        print("right type")
+        print(expected_output)
         self.assertTrue(torch.allclose(SequenceDataset.preprocess(self, text), expected_output, rtol=1e-5, atol=1e-5))
 
     def testReaderFunction(self, dir_path):
