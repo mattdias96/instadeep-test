@@ -37,8 +37,8 @@ evaluate: build
 	docker run --rm -v $(PWD):/app -it my_image python evaluate.py --param1 value1 --param2 value2
 
 # Run the predict command inside the container
-predict: build
-	docker run --rm -v $(PWD):/app -it my_image python predict.py --param1 value1 --param2 value2
+predict: 
+	python predict.py --train_dir="C:\Users\mathe\Documents\random_split"
 
 test:
 	python -m unittest discover -s tests/ -p "test*.py"
