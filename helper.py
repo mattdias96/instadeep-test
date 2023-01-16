@@ -1,6 +1,7 @@
 import torch
 import pandas as pd
 from tqdm import tqdm
+import numpy as np
 
 from data.dataset import SequenceDataset
 
@@ -110,6 +111,6 @@ def evaluateModel(model, test_loader)->float:
             #_, pred = torch.max(outputs.data, 1)
             #total += labels.size(0)
             #correct += (predicted == labels).sum().item()
-            acc = model.validation_step(batch, 0) # this zero doesnt matter # create logging boolean
+            acc = model.validation_step(batch, 0, logging = False) # this zero doesnt matter
             accs.append(acc)
-    return accs.mean()
+    return np.mean(accs)
