@@ -102,13 +102,13 @@ def evaluateModel(model, test_loader)->float:
     #model.eval()
     accs = []
     with torch.no_grad():
-        for data in test_loader:
-            inputs, labels = data
+        for batch in test_loader:
+            #inputs, labels = data
             #inputs, labels = inputs.to(device), labels.to(device)
-            outputs = model(inputs)
-            _, pred = torch.max(outputs.data, 1)
+            #outputs = model(inputs)
+            #_, pred = torch.max(outputs.data, 1)
             #total += labels.size(0)
             #correct += (predicted == labels).sum().item()
-            acc = model.valid_acc(pred, labels)
+            acc = model.validation_step(batch)
             accs.append(acc)
     return accs.mean()
