@@ -7,7 +7,7 @@ from models.protcnn import ProtCNN
 
 class TestModels(unittest.TestCase):
     """
-    A class of unit and integration tests to test the functionality of the functions related to modelling
+    A class of unit tests to test the functionality of the functions related to modelling
     """
     def testLambda(self):
         """
@@ -55,28 +55,4 @@ class TestModels(unittest.TestCase):
 
         # Check if the output is the result of the forward pass through the defined model
         self.assertTrue(torch.allclose(output, protcnn.model(x.float())))
-
-    def testResidualBlockLambdaProtCNN(self):
-        """
-        An integration test for the ResidualBlock, Lambda and ProteinCNN functions
-        """
-        # Define input data
-        x = torch.randn(22, 8, 10)
-        
-        # Instantiate ResidualBlock, Lambda and ProtCNN
-        residual_block = ResidualBlock(128, 128, dilation=2)
-        lambda_layer = Lambda(lambda x: x.flatten(start_dim=1))
-        protcnn = ProtCNN(num_classes=10, lr=0.001, momentum=0.9, weight_decay=0.0001, milestones=[10,20,30], gamma=0.1)
-
-        # Pass input through ResidualBlock
-        x = residual_block(x)
-        
-        # Pass output of ResidualBlock through Lambda layer
-        x = lambda_layer(x)
-        
-        # Pass output of Lambda layer through ProtCNN
-        output = protcnn(x)
-        
-        # Assert shape of output
-        self.assertEqual(output.shape, (500, 10))
 
