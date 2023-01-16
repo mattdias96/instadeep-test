@@ -29,7 +29,7 @@ class TestHelper(unittest.TestCase):
         targets = pd.Series(['a', 'b', 'c', 'a'])
         expected_output = {'a': 1, 'b': 2, 'c': 3, '<unk>': 0}
         self.assertEqual(buildLabels(targets), expected_output)
-        targets = pd.Series([])
+        targets = pd.Series([], dtype = "int64")
         expected_output = {'<unk>': 0}
         self.assertEqual(buildLabels(targets), expected_output)
         targets = pd.Series(['a', 'a', 'a', 'b', 'b', 'c'])
