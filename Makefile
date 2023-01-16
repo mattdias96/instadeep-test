@@ -41,4 +41,4 @@ predict: build
 	docker run --rm -v $(PWD):/app -it my_image python predict.py --param1 value1 --param2 value2
 
 test:
-	python -m unittest discover -s tests/ -p "test*.py"
+	python -m unittest discover -s tests/ -p "test*.py" --dir_path = "C:\Users\mathe\Documents\random_split"
