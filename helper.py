@@ -109,6 +109,6 @@ def evaluateModel(model, test_loader)->float:
             #_, pred = torch.max(outputs.data, 1)
             #total += labels.size(0)
             #correct += (predicted == labels).sum().item()
-            acc = model.validation_step(batch)
+            acc = model.validation_step(batch, 0) # this zero doesnt matter
             accs.append(acc)
     return accs.mean()
