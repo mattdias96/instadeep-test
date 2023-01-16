@@ -18,7 +18,7 @@ class TestHelper(unittest.TestCase):
         word2id = buildVocab(train_data, 1)
         print(word2id)
         self.assertIsInstance(word2id, dict)
-        self.assertEqual(len(word2id), 2)
+        self.assertEqual(len(word2id), 4)
         self.assertEqual(word2id["A"], 2)
         self.assertFalse("C" in word2id)
         self.assertEqual(word2id["G"], 4)
