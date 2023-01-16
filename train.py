@@ -27,13 +27,12 @@ def main():
     parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
     parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
     parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
+    parser.add_argument('--save_model_file', type=int, default="", help='File name to save trained model')
     # optimizer
     # learning rate scheduler format
 
     # Parse the command line arguments
     args = parser.parse_args()
-
-    
     # Read train data files
     train_data, train_targets = reader("train", args.data_dir)
     # Define dictionary from AA strings to unique integers
@@ -52,7 +51,9 @@ def main():
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
-    torch.save(model.state_dict(), 'default_protCNN.pth')
+    # Save model
+    if args.save_model != "":
+        torch.save(model.state_dict(), args.save_model_file)
 
 if __name__ == "__main__":
     main()
