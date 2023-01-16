@@ -1,3 +1,7 @@
+"""
+This module contains the main function for evaluating
+a given model on a given test set
+"""
 import argparse
 import json
 
@@ -9,7 +13,11 @@ from data import reader
 from models.protcnn import ProtCNN
 
 def main():
-
+    """
+    Function processes arguments inputed by the user, preprocess data,
+    predicts with given model, evaluates the predictions and prints
+    average accuracy across batches
+    """
     parser = argparse.ArgumentParser()
 
     # Add command line arguments
