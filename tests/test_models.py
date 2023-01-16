@@ -61,7 +61,7 @@ class TestModels(unittest.TestCase):
         An integration test for the ResidualBlock, Lambda and ProteinCNN functions
         """
         # Define input data
-        x = torch.randn(2, 128, 10)
+        x = torch.randn(22, 128, 10)
         
         # Instantiate ResidualBlock, Lambda and ProtCNN
         residual_block = ResidualBlock(128, 128, dilation=2)
