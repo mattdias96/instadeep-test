@@ -30,7 +30,7 @@ lint: venv
 
 # Run the train command inside the container
 train: 
-	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
+	python train.py --train_dir="C:\Users\mathe\Documents\random_split"
 
 # Run the evaluate command inside the container
 evaluate: 
