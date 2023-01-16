@@ -79,4 +79,3 @@ class TestModels(unittest.TestCase):
         # Check if the output is the result of the forward pass
         # through the defined model
         self.assertTrue(torch.allclose(output, protcnn.model(x.float())))
-

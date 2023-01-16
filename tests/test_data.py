@@ -7,7 +7,8 @@ import unittest
 import pandas as pd
 import torch
 
-from data.dataset import SequenceDataset, reader, get_amino_acid_frequencies
+from data.dataset import SequenceDataset
+from data.helper import reader, get_amino_acid_frequencies
 
 
 class TestData(unittest.TestCase):

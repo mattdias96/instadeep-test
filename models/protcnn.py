@@ -8,7 +8,7 @@ import torch
 import lightning as pl
 import torchmetrics
 
-from models import *
+from models import ResidualBlock, Lambda
 
 class ProtCNN(pl.LightningModule):
     '''
@@ -20,7 +20,8 @@ class ProtCNN(pl.LightningModule):
         super().__init__()
         # Define architecture of the model
         self.model = torch.nn.Sequential(
-            # 1D convolution layer with 22 input channels, 128 output channels, kernel size of 1 and no padding
+            # 1D convolution layer with 22 input channels, 128 output channels,
+            # kernel size of 1 and no padding
             torch.nn.Conv1d(num_aa, 128, kernel_size=1, padding=0, bias=False),
             # Residual block with 128 input and output channels, and a dilation of 2
             ResidualBlock(128, 128, dilation=2),
