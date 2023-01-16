@@ -44,7 +44,7 @@ class TestHelper(unittest.TestCase):
         word2id = {'A': 1, 'B': 2, 'C': 3}
         fam2label = {'Family1': 1, 'Family2': 2} # change this
         seq_max_len = 10
-        data_dir = 'path/to/data' # change this
+        data_dir = "/Users/mathe/Documents/random_split" # change this
         batch_size = 8
 
         dataloaders = loadData(num_workers, word2id, fam2label, seq_max_len, data_dir, batch_size)
