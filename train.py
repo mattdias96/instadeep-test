@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
     parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
     parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
-    parser.add_argument('--save_model_file', type=str, default="default_protCNN.pth", help='File name to save trained model')
+    parser.add_argument('--save_model_file', type=str, default="default", help='File name to save trained model')
     # optimizer
     # learning rate scheduler format
 
@@ -52,7 +52,7 @@ def main():
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
     # Save model
-    if args.save_model != " ":
+    if args.save_model != "default":
         torch.save(model.state_dict(), args.save_model_file)
 
 if __name__ == "__main__":
