@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	python pylint helper.py
+	pylint helper.py
 
 # Run the train command inside the container
 train:
