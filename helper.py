@@ -10,7 +10,8 @@ from itertools import islice
 
 from data.dataset import SequenceDataset
 
-def loadData(num_workers:int, word2id:dict, fam2label:dict, seq_max_len:int, data_dir:str, batch_size:int)->dict:
+def loadData(num_workers:int, word2id:dict, fam2label:dict,
+            seq_max_len:int, data_dir:str, batch_size:int)->dict:
     """
     Load the dataset and return the train, dev and test dataloaders
 
@@ -54,8 +55,10 @@ def loadData(num_workers:int, word2id:dict, fam2label:dict, seq_max_len:int, dat
 
 def buildLabels(targets:pd.Series)->dict:
     """
-    Creates a dictionary which maps the unique targets in the input pandas Series to consecutive integers starting from 1 and an additional key, specified by the input unknown_token, with a value of 0.
-    Prints the number of labels present in the resulting dictionary.
+    Creates a dictionary which maps the unique targets in the input pandas Series
+    to consecutive integers starting from 1 and an additional key, specified by
+    the input unknown_token, with a value of 0.Prints the number of labels present
+    in the resulting dictionary.
 
     Parameters:
     targets (pd.Series) : A pandas Series that contains the target labels.
@@ -134,7 +137,7 @@ def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->li
     """
     preds = []
     with torch.no_grad():
-        for i, batch in tqdm(enumerate(test_loader)):
+        for _, batch in tqdm(enumerate(test_loader)):
             x, _ = batch['sequence'], batch['target']
             y_hat = model(x)
             pred = torch.argmax(y_hat, dim=1, keepdim = True)

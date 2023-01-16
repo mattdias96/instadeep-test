@@ -3,7 +3,6 @@ This module contains the main function for evaluating
 a given model on a given test set
 """
 import argparse
-import json
 
 import lightning as pl
 import torch
@@ -21,19 +20,54 @@ def main():
     parser = argparse.ArgumentParser()
 
     # Add command line arguments
-    parser.add_argument("--model", type=str, default = "default_protCNN") # make this flexible later
-    parser.add_argument("--model_weights_file_path", type=str, required = True)
-    parser.add_argument('--train_dir', type=str, default='', help='path to the dataset to be trained')
-    parser.add_argument('--test_dir', type=str, default='', help='path to the dataset to be evaluated')
-    parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
-    parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
-    parser.add_argument('--batch_size', type=int, default=500, help='batch size')
-    parser.add_argument('--lr', type=float, default=1e-2, help='learning rate')
-    parser.add_argument('--momentum', type=float, default=0.9, help='momentum for the optimizer')
-    parser.add_argument('--weight-decay', type=float, default=1e-2, help='weight decay of the optimizer')
-    parser.add_argument('--milestones', type=list, default=[5, 8, 10, 12, 14, 16, 18, 20], help='milestones of the lr scheduler')
-    parser.add_argument('--gamma', type=float, default=0.9, help='gamma parameter of the lr scheduler')
-    parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
+    parser.add_argument("--model",
+                        type=str,
+                        default = "default_protCNN")
+    parser.add_argument("--model_weights_file_path",
+                        type=str,
+                        required = True)
+    parser.add_argument('--train_dir',
+                        type=str,
+                        default='',
+                        help='path to the dataset to be trained')
+    parser.add_argument('--test_dir',
+                        type=str,
+                        default='',
+                        help='path to the dataset to be evaluated')
+    parser.add_argument('--seq_max_len',
+                        type=int,
+                        default=120,
+                        help='maximum length of the aminoacid sequence')
+    parser.add_argument('--rare_aa_count',
+                        type=int,
+                        default=5,
+                        help='number of Amino Acids to be considered rare')
+    parser.add_argument('--batch_size',
+                        type=int,
+                        default=500,
+                        help='batch size')
+    parser.add_argument('--lr',
+                        type=float,
+                        default=1e-2,
+                        help='learning rate')
+    parser.add_argument('--momentum',
+                        type=float, default=0.9, help='momentum for the optimizer')
+    parser.add_argument('--weight-decay',
+                        type=float,
+                        default=1e-2,
+                        help='weight decay of the optimizer')
+    parser.add_argument('--milestones',
+                        type=list,
+                        default=[5, 8, 10, 12, 14, 16, 18, 20],
+                        help='milestones of the lr scheduler')
+    parser.add_argument('--gamma',
+                        type=float,
+                        default=0.9,
+                        help='gamma parameter of the lr scheduler')
+    parser.add_argument('--num_workers',
+                        type=int,
+                        default=0,
+                        help='number of worker threads to use for loading the data')
 
     # Parse the command line arguments
     args = parser.parse_args()

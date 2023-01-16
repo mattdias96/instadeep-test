@@ -3,7 +3,6 @@ This module contains the main function for getting and
 storing the predictions of a given model
 """
 import argparse
-import json
 import datetime
 import csv
 
@@ -76,18 +75,20 @@ def main():
     # Parse the command line arguments
     args = parser.parse_args()
     # Read train data files
-    valid_data, valid_targets = reader("train", args.train_dir) # change this in the reader function later
+    valid_data, valid_targets = reader("train", args.train_dir)
     # Define dictionary from AA strings to unique integers
     word2id = buildVocab(valid_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
     fam2label = buildLabels(valid_targets)
     # Define number of classes in the dataset
     num_classes = len(fam2label)
-    # Retrieve pretrained model
-    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
-    model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
+    # Retrieve pretrained model - make this flexible later
+    model = ProtCNN(num_classes, args.lr, args.momentum,
+                    args.weight_decay, args.milestones, args.gamma)
+    model.load_state_dict(torch.load(args.model_weights_file_path))
     # Load the data
-    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.train_dir, args.batch_size)
+    loader = loadData(args.num_workers, word2id, fam2label,
+                      args.seq_max_len, args.train_dir, args.batch_size)
     # Create predictions
     preds = getPreds(model, loader["test"])
     preds = [x.numpy().tolist() for x in preds]
@@ -95,7 +96,7 @@ def main():
     now = datetime.datetime.now()
     file_name = f"data_{now.strftime('%Y-%m-%d %H-%M-%S')}.csv"
     # Save prediction in file
-    with open(file_name, 'w', newline='') as csvfile:
+    with open(file_name, 'w', newline='', encoding="utf-8") as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(preds)
 
