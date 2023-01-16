@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	python -m pylint .
+	python -m pylint predict.py evaluate.py helper.py
 
 # Run the train command inside the container
 train:
