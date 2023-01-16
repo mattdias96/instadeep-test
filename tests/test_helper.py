@@ -3,7 +3,7 @@ import pandas as pd
 import torch
 
 from data import reader
-from .. import buildVocab, buildLabels, loadData
+from helper import buildVocab, buildLabels, loadData
 
 class TestHelper(unittest.TestCase):
     """
