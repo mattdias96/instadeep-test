@@ -2,6 +2,7 @@ import torch
 import pandas as pd
 from tqdm import tqdm
 import numpy as np
+from itertools import islice
 
 from data.dataset import SequenceDataset
 
@@ -109,7 +110,7 @@ def evaluateModel(model, test_loader)->float:
 def getPreds(model, test_loader)->list:
     preds = []
     with torch.no_grad():
-        for batch in tqdm(test_loader):
+        for batch in tqdm(islice(test_loader, 10)):
             x, _ = batch['sequence'], batch['target']
             y_hat = model(x)
             pred = torch.argmax(y_hat, dim=1) 
