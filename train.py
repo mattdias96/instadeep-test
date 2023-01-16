@@ -1,33 +1,78 @@
 import argparse
-import json
 
 import lightning as pl
+import torch
 
 from helper import loadData, buildLabels, buildVocab
 from data import reader
 from models.protcnn import ProtCNN
-import torch
+
 
 def main():
-
+    """
+    Function processes arguments inputed by the user, preprocess data,
+    train the model and saved a trained model
+    """
     parser = argparse.ArgumentParser()
-
     # Add command line arguments
-    parser.add_argument('--lr', type=float, default=1e-2, help='learning rate')
-    parser.add_argument('--momentum', type=float, default=0.9, help='momentum for the optimizer')
-    parser.add_argument('--weight-decay', type=float, default=1e-2, help='weight decay of the optimizer')
-    parser.add_argument('--milestones', type=list, default=[5, 8, 10, 12, 14, 16, 18, 20], help='milestones of the lr scheduler')
-    parser.add_argument('--gamma', type=float, default=0.9, help='gamma parameter of the lr scheduler')
-    parser.add_argument('--epochs', type=int, default=3, help='number of training epochs')
-    parser.add_argument('--batch_size', type=int, default=500, help='batch size')
-    parser.add_argument('--model-path', type=str, default='', help='path to save the trained model')
-    parser.add_argument('--train_dir', type=str, default='', help='path to the training dataset')
-    parser.add_argument('--gpus', type=int, default=1, help='1 if GPU is used, 0 if CPU is used')
-    parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
-    parser.add_argument('--random_seed', type=int, default=0, help='random seed for reproducibility')
-    parser.add_argument('--num_workers', type=int, default=0, help='number of worker threads to use for loading the data')
-    parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
-    parser.add_argument('--save_model_file', type=str, default="default", help='File name to save trained model')
+    parser.add_argument('--lr',
+                        type=float, 
+                        default=1e-2, 
+                        help='learning rate')
+    parser.add_argument('--momentum', 
+                        type=float, default=0.9, 
+                        help='momentum for the optimizer')
+    parser.add_argument('--weight-decay',
+                        type=float, default=1e-2,
+                        help='weight decay of the optimizer')
+    parser.add_argument('--milestones',
+                        type=list,
+                        default=[5, 8, 10, 12, 14, 16, 18, 20],
+                        help='milestones of the lr scheduler')
+    parser.add_argument('--gamma',
+                        type=float,
+                        default=0.9,
+                        help='gamma parameter of the lr scheduler')
+    parser.add_argument('--epochs',
+                        type=int,
+                        default=3,
+                        help='number of training epochs')
+    parser.add_argument('--batch_size',
+                        type=int,
+                        default=500,
+                        help='batch size')
+    parser.add_argument('--model-path',
+                        type=str,
+                        default='',
+                        help='path to save the trained model')
+    parser.add_argument('--train_dir',
+                        type=str,
+                        default='',
+                        help='path to the training dataset')
+    parser.add_argument('--gpus',
+                        type=int,
+                        default=1,
+                        help='1 if GPU is used, 0 if CPU is used')
+    parser.add_argument('--seq_max_len', 
+                        type=int,
+                        default=120,
+                        help='maximum length of the aminoacid sequence')
+    parser.add_argument('--random_seed',
+                        type=int,
+                        default=0,
+                        help='random seed for reproducibility')
+    parser.add_argument('--num_workers',
+                        type=int,
+                        default=0,
+                        help='number of worker threads to use for loading the data')
+    parser.add_argument('--rare_aa_count',
+                        type=int,
+                        default=5,
+                        help='number of Amino Acids to be considered rare')
+    parser.add_argument('--save_model_file',
+                        type=str,
+                        default="default",
+                        help='File name to save trained model')
     # optimizer
     # learning rate scheduler format
 
