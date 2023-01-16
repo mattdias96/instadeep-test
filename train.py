@@ -52,7 +52,7 @@ def main():
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
     # Save model
-    if args.save_model != "default":
+    if args.save_model_file != "default":
         torch.save(model.state_dict(), args.save_model_file)
 
 if __name__ == "__main__":
