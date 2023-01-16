@@ -1,10 +1,14 @@
+""" This module contains the main function for training a model end-to-end and saving the trained model
+at the location decide by the user """
+
 import argparse
 
 import lightning as pl
 import torch
 
 from helper import loadData, buildLabels, buildVocab
-from data import reader
+
+from data.helper import reader
 from models.protcnn import ProtCNN
 
 
@@ -16,11 +20,11 @@ def main():
     parser = argparse.ArgumentParser()
     # Add command line arguments
     parser.add_argument('--lr',
-                        type=float, 
-                        default=1e-2, 
+                        type=float,
+                        default=1e-2,
                         help='learning rate')
-    parser.add_argument('--momentum', 
-                        type=float, default=0.9, 
+    parser.add_argument('--momentum',
+                        type=float, default=0.9,
                         help='momentum for the optimizer')
     parser.add_argument('--weight-decay',
                         type=float, default=1e-2,
@@ -53,7 +57,7 @@ def main():
                         type=int,
                         default=1,
                         help='1 if GPU is used, 0 if CPU is used')
-    parser.add_argument('--seq_max_len', 
+    parser.add_argument('--seq_max_len',
                         type=int,
                         default=120,
                         help='maximum length of the aminoacid sequence')
@@ -87,7 +91,7 @@ def main():
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Initialize the model
-    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # Create a class for this and make it flexible later 
+    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # Create a class for this and make it flexible later
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module

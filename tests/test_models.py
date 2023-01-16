@@ -18,7 +18,7 @@ class TestModels(unittest.TestCase):
         output_tensor = lambda_module(input_tensor)
 
         self.assertTrue(torch.allclose(output_tensor, input_tensor * 2))
-    
+
     def testRBForward(self):
         """
         A unit test for the Residual Block forward function
@@ -35,7 +35,7 @@ class TestModels(unittest.TestCase):
 
         # Check if the output is a sum of the input and the result of the convolutional layers
         self.assertTrue(torch.allclose(output, x + residual_block.conv2(F.relu(residual_block.bn2(residual_block.conv1(F.relu(residual_block.bn1(x))))))))
-    
+
     def testProteinCNNForward(self):
         """
         A unit test for the ProteinCNN forward function
