@@ -9,12 +9,12 @@ class ProtCNN(pl.LightningModule):
     A PyTorch Lightning LightningModule subclass which represents a 1D convolutional neural network
     for protein sequence classification
     '''
-    def __init__(self, num_classes:int, lr:float, momentum:float, weight_decay:float, milestones:list, gamma:float): 
+    def __init__(self, num_classes:int, lr:float, momentum:float, weight_decay:float, milestones:list, gamma:float, num_aa=22): 
         super().__init__()
         # Define architecture of the model
         self.model = torch.nn.Sequential(
             # 1D convolution layer with 22 input channels, 128 output channels, kernel size of 1 and no padding
-            torch.nn.Conv1d(22, 128, kernel_size=1, padding=0, bias=False),
+            torch.nn.Conv1d(num_aa, 128, kernel_size=1, padding=0, bias=False),
             # Residual block with 128 input and output channels, and a dilation of 2
             ResidualBlock(128, 128, dilation=2),
             # Residual block with 128 input and output channels, and a dilation of 3

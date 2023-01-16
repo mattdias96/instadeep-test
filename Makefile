@@ -1,9 +1,4 @@
-# Copied from https://github.com/shreyashankar/create-ml-app
-
 .PHONY: help lint run
-# Makefile variables
-VENV_NAME:=venv
-PYTHON=${VENV_NAME}/bin/python3
 
 # Include your variables here
 RANDOM_SEED:=42
@@ -21,20 +16,22 @@ help:
 	@echo "make run"
 	@echo "       run project"
 
-# Install dependencies whenever setup.py is changed.
-venv: $(VENV_NAME)/bin/activate
-$(VENV_NAME)/bin/activate: setup.py
-	test -d $(VENV_NAME) || python3 -m venv $(VENV_NAME)
-	${PYTHON} -m pip install -U pip
-	${PYTHON} -m pip install -e .
-	rm -rf ./*.egg-info
-	touch $(VENV_NAME)/bin/activate
+# Build the Docker image
+build:
+	docker build -t my_image .
 
-lint: venv
-	python -m pylint main.py
+# Run the train command inside the container
+train: build
+	docker run --rm -v $(PWD):/app -it my_image python train.py --param1 value1 --param2 value2
 
-run: venv
-	python main.py --seed $(RANDOM_SEED) --num_epochs $(NUM_EPOCHS) --input_dim $(INPUT_DIM) --hidden_dim $(HIDDEN_DIM) --output_dim $(OUTPUT_DIM)
+# Run the test command inside the container
+test: build
+	docker run --rm -v $(PWD):/app -it my_image python -m unittest discover -s tests/ -p "test*.py"
 
-test:
-	python -m unittest discover -s tests/ -p "test*.py"
+# Run the evaluate command inside the container
+evaluate: build
+	docker run --rm -v $(PWD):/app -it my_image python evaluate.py --param1 value1 --param2 value2
+
+# Run the predict command inside the container
+predict: build
+	docker run --rm -v $(PWD):/app -it my_image python predict.py --param1 value1 --param2 value2
