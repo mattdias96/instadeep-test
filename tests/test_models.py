@@ -1,5 +1,6 @@
 import unittest
 import torch
+import torch.nn.functional as F
 
 from models import Lambda, ResidualBlock
 from models.protcnn import ProtCNN
@@ -22,7 +23,7 @@ class TestModels(unittest.TestCase):
         """
         A unit test for the Residual Block forward function
         """
-        in_channels = 4
+        in_channels = 8
         out_channels = 8
         dilation = 2
         x = torch.randn(2, in_channels, 10)
