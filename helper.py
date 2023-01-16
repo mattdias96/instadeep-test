@@ -60,8 +60,6 @@ def buildLabels(targets:pd.Series)->dict:
     unique_targets = targets.unique()
     fam2label = {target: i for i, target in enumerate(unique_targets, start=1)}
     fam2label['<unk>'] = 0
-    
-    print(f"There are {len(fam2label)} labels.")
         
     return fam2label
 
@@ -105,12 +103,6 @@ def evaluateModel(model, test_loader)->float:
     accs = []
     with torch.no_grad():
         for batch in tqdm(test_loader):
-            #inputs, labels = data
-            #inputs, labels = inputs.to(device), labels.to(device)
-            #outputs = model(inputs)
-            #_, pred = torch.max(outputs.data, 1)
-            #total += labels.size(0)
-            #correct += (predicted == labels).sum().item()
             acc = model.validation_step(batch, 0, logging = False) # this zero doesnt matter
             accs.append(acc)
     return np.mean(accs)
