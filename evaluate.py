@@ -72,7 +72,7 @@ def main():
     # Parse the command line arguments
     args = parser.parse_args()
     # Read train data files
-    valid_data, valid_targets = reader("train", args.train_dir) # change this in the reader function later
+    valid_data, valid_targets = reader("train", args.train_dir)
     # Define dictionary from AA strings to unique integers
     word2id = buildVocab(valid_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
@@ -80,10 +80,12 @@ def main():
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Retrieve pretrained model
-    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
-    model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
+    model = ProtCNN(num_classes, args.lr, args.momentum,
+                    args.weight_decay, args.milestones, args.gamma)
+    model.load_state_dict(torch.load(args.model_weights_file_path))
     # Load the data
-    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.train_dir, args.batch_size)
+    loader = loadData(args.num_workers, word2id, fam2label,
+                      args.seq_max_len, args.train_dir, args.batch_size)
     # Evaluate predictions
     accuracy = evaluateModel(model, loader["test"])
     # Print result

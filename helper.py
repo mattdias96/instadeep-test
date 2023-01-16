@@ -6,7 +6,7 @@ import torch
 import pandas as pd
 from tqdm import tqdm
 import numpy as np
-from itertools import islice
+#from itertools import islice
 
 from data.dataset import SequenceDataset
 
@@ -73,15 +73,20 @@ def buildLabels(targets:pd.Series)->dict:
 
 def buildVocab(data:list, rare_AA_count:int)->dict:
     """
-    Builds a vocabulary of amino acids from a list of sequences and creates a mapping from AA strings to unique integers.
+    Builds a vocabulary of amino acids from a list of sequences and creates
+    a mapping from AA strings to unique integers.
 
     Parameters:
-        - data (list): a list of sequences, where each sequence is a string of amino acids.
-        - rare_AA_count (int, optional): The number of rare AAs to remove from the vocabulary (defaults to 4).
+        - data (list): a list of sequences, where each sequence is a string of
+        amino acids.
+        - rare_AA_count (int, optional): The number of rare AAs to remove from
+        the vocabulary (defaults to 4).
 
     Returns:
-        - word2id (dict): a dictionary that maps each unique AA in data to a unique integer. The integers are assigned in the order that the AAs appear in the data, starting from 2.
-        Two additional special tokens, '<pad>' and '<unk>', are added to the mapping, they are assigned the integers 0 and 1, respectively.
+        - word2id (dict): a dictionary that maps each unique AA in data to a unique integer.
+        The integers are assigned in the order that the AAs appear in the data, starting from 2.
+        Two additional special tokens, '<pad>' and '<unk>', are added to the mapping, they are
+        assigned the integers 0 and 1, respectively.
     """
     # Build the vocabulary
     voc = dict()
@@ -108,7 +113,8 @@ def buildVocab(data:list, rare_AA_count:int)->dict:
 
 def evaluateModel(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->float:
     """
-    This function takes a PyTorch model and a test dataloader, and evaluates the model's performance by computing the mean accuracy over the entire test set.
+    This function takes a PyTorch model and a test dataloader, and evaluates the model's performance
+    by computing the mean accuracy over the entire test set.
 
     Parameters:
     - model (torch.nn.Module): A PyTorch model to be evaluated.
@@ -126,7 +132,8 @@ def evaluateModel(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader
 
 def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->list:
     """
-    This function takes a PyTorch model and a test dataloader, and returns the predictions of the model on the entire test set.
+    This function takes a PyTorch model and a test dataloader, and returns the predictions of the model
+    on the entire test set.
 
     Parameters:
     - model (torch.nn.Module): A PyTorch model to be evaluated.
