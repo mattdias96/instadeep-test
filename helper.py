@@ -5,7 +5,7 @@ import numpy as np
 
 from data.dataset import SequenceDataset
 
-def loadData(num_workers, word2id, fam2label, seq_max_len, data_dir, batch_size)->dict:
+def loadData(num_workers:int, word2id:dict, fam2label:dict, seq_max_len:int, data_dir:str, batch_size:int)->dict:
     """
     Load the dataset and return the train, dev and test dataloaders
     
@@ -63,7 +63,7 @@ def buildLabels(targets:pd.Series)->dict:
         
     return fam2label
 
-def buildVocab(data, rare_AA_count)->dict:
+def buildVocab(data:list, rare_AA_count:int)->dict:
     """
     Builds a vocabulary of amino acids from a list of sequences and creates a mapping from AA strings to unique integers.
     
@@ -98,20 +98,40 @@ def buildVocab(data, rare_AA_count)->dict:
    
     return word2id
     
-def evaluateModel(model, test_loader)->float:
+def evaluateModel(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->float:
+    """
+    This function takes a PyTorch model and a test dataloader, and evaluates the model's performance by computing the mean accuracy over the entire test set.
+
+    Parameters:
+    - model (torch.nn.Module): A PyTorch model to be evaluated.
+    - test_loader (torch.utils.data.DataLoader): A PyTorch dataloader for the test set.
+
+    Returns:
+    - float: The mean accuracy of the model over the entire test set.
+    """
     accs = []
     with torch.no_grad():
-        for batch in tqdm(test_loader):
-            acc = model.validation_step(batch, 0, logging = False) # this zero doesnt matter
+        for i, batch in tqdm(enumerate(test_loader)):
+            acc = model.validation_step(batch, i, logging = False)
             accs.append(acc)
     return np.mean(accs)
 
-def getPreds(model, test_loader)->list:
+def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->list:
+    """
+    This function takes a PyTorch model and a test dataloader, and returns the predictions of the model on the entire test set.
+
+    Parameters:
+    - model (torch.nn.Module): A PyTorch model to be evaluated.
+    - test_loader (torch.utils.data.DataLoader): A PyTorch dataloader for the test set.
+
+    Returns:
+    - list: A list of numpy arrays containing the predictions of the model on the test set.
+    """
     preds = []
     with torch.no_grad():
-        for batch in tqdm(test_loader):
+        for i, batch in tqdm(enumerate(test_loader)):
             x, _ = batch['sequence'], batch['target']
             y_hat = model(x)
-            pred = torch.argmax(y_hat, dim=1) 
+            pred = torch.argmax(y_hat, dim=1, keepdim = True) 
             preds.append(pred)
     return preds
