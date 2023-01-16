@@ -23,7 +23,7 @@ def main():
     # Parse the command line arguments
     args = parser.parse_args()
     # Read train data files
-    valid_data, valid_targets = reader("valid", args.data_dir) # change this in the reader function later
+    valid_data, valid_targets = reader("test", args.data_dir) # change this in the reader function later
     # Define dictionary from AA strings to unique integers
     word2id = buildVocab(valid_data, args.rare_aa_count)
     # Define dictionary mapping unique targets to consecutive integers
