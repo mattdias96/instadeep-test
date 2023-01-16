@@ -25,19 +25,19 @@ help:
 build:
 	docker build -t my_image .
 
-lint: 
-	python -m pylint train.py
+lint:
+	python -m pylint ./instadeep
 
 # Run the train command inside the container
-train: 
+train:
 	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --gpus=0
 
 # Run the evaluate command inside the container
-evaluate: 
+evaluate:
 	python evaluate.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
 
 # Run the predict command inside the container
-predict: 
+predict:
 	python predict.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
 # Test functions command inside the container
 test:
