@@ -130,7 +130,7 @@ def getPreds(model:torch.nn.Module, test_loader:torch.utils.data.DataLoader)->li
     """
     preds = []
     with torch.no_grad():
-        for i, batch in tqdm(islice(enumerate(test_loader), 10)):
+        for i, batch in tqdm(enumerate(test_loader)):
             x, _ = batch['sequence'], batch['target']
             print(x.shape)
             y_hat = model(x)
