@@ -38,7 +38,7 @@ evaluate: build
 
 # Run the predict command inside the container
 predict: 
-	python predict.py --train_dir="C:\Users\mathe\Documents\random_split"
+	python predict.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
 
 test:
 	python -m unittest discover -s tests/ -p "test*.py"
