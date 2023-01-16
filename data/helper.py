@@ -49,4 +49,3 @@ def get_amino_acid_frequencies(data: list)->pd.DataFrame:
         aa_counter.update(sequence)
 
     return pd.DataFrame({'AA': list(aa_counter.keys()), 'Frequency': list(aa_counter.values())})
-

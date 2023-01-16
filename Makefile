@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	python -m pylint data
+	python -m pylint instadeep-test
 
 # Run the train command inside the container
 train:
