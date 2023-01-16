@@ -13,7 +13,8 @@ def main():
     parser = argparse.ArgumentParser()
 
     # Add command line arguments
-    parser.add_argument("--model", type=str, default = "default_protCNN")
+    parser.add_argument("--model", type=str, default = "default_protCNN") # make this flexible later
+    parser.add_argument("--model_weights_file_path", type=str, required = True)
     parser.add_argument('--data_dir', type=str, default='', help='path to the dataset to be evaluated')
     parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
     parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
@@ -31,7 +32,7 @@ def main():
     num_classes = len(fam2label)
     # Retrieve pretrained model
     model = ProtCNN() # make this flexible later
-    model.load_state_dict(torch.load(args.model + '.pth')) # allow user to use own model later
+    model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
     # Evaluate predictions
