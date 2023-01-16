@@ -48,7 +48,7 @@ class TestData(unittest.TestCase):
         #print(expected_output)
         self.assertTrue(torch.allclose(SequenceDataset.preprocess(self, text), expected_output, rtol=1e-5, atol=1e-5))
 
-    def testReaderFunction(self, dir_path:str):
+    def testReaderFunction(self, dir_path = "\Users\mathe\Documents\random_split"):
         """
         A test for the test reader function.
         """
