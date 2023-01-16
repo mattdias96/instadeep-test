@@ -41,7 +41,7 @@ class TestData(unittest.TestCase):
                                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], dtype = int.64)
+                                        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], dtype = torch.int64)
         #print("left type")
         #print(SequenceDataset.preprocess(self, text))
         #print("right type")
