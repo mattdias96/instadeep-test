@@ -31,7 +31,10 @@ $(VENV_NAME)/bin/activate: setup.py
 	touch $(VENV_NAME)/bin/activate
 
 lint: venv
-	${PYTHON} -m pylint main.py
+	python -m pylint main.py
 
 run: venv
-	${PYTHON} main.py --seed $(RANDOM_SEED) --num_epochs $(NUM_EPOCHS) --input_dim $(INPUT_DIM) --hidden_dim $(HIDDEN_DIM) --output_dim $(OUTPUT_DIM)
+	python main.py --seed $(RANDOM_SEED) --num_epochs $(NUM_EPOCHS) --input_dim $(INPUT_DIM) --hidden_dim $(HIDDEN_DIM) --output_dim $(OUTPUT_DIM)
+
+test:
+	python -m unittest discover -s tests/ -p "test*.py"
