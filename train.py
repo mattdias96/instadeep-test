@@ -1,5 +1,8 @@
-""" This module contains the main function for training a model end-to-end and saving the trained model
-at the location decide by the user """
+"""
+This module contains the main function for training a model
+end-to-end and saving the trained model at the location decide
+by the user
+"""
 
 import argparse
 
@@ -91,13 +94,16 @@ def main():
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Initialize the model
-    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # Create a class for this and make it flexible later
+    # Create a class for this and make it flexible later
+    model = ProtCNN(num_classes, args.lr, args.momentum,
+                    args.weight_decay, args.milestones, args.gamma)
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module
     trainer = pl.Trainer(gpus=args.gpus, max_epochs=args.epochs)
     # Load the data
-    loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.train_dir, args.batch_size)
+    loader = loadData(args.num_workers, word2id, fam2label,
+                      args.seq_max_len, args.train_dir, args.batch_size)
     # Fit model
     trainer.fit(model, loader['train'], loader['dev'])
     # Save model
