@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	pylint --recursive instadeep-test
+	pylint --recursive data
 
 # Run the train command inside the container
 train:
