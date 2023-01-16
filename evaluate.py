@@ -19,6 +19,11 @@ def main():
     parser.add_argument('--seq_max_len', type=int, default=120, help='maximum length of the aminoacid sequence')
     parser.add_argument('--rare_aa_count', type=int, default=5, help='number of Amino Acids to be considered rare')
     parser.add_argument('--batch_size', type=int, default=500, help='batch size')
+    parser.add_argument('--lr', type=float, default=1e-2, help='learning rate')
+    parser.add_argument('--momentum', type=float, default=0.9, help='momentum for the optimizer')
+    parser.add_argument('--weight-decay', type=float, default=1e-2, help='weight decay of the optimizer')
+    parser.add_argument('--milestones', type=list, default=[5, 8, 10, 12, 14, 16, 18, 20], help='milestones of the lr scheduler')
+    parser.add_argument('--gamma', type=float, default=0.9, help='gamma parameter of the lr scheduler')
 
     # Parse the command line arguments
     args = parser.parse_args()
@@ -31,7 +36,7 @@ def main():
     # Define number of classes in the dataset
     num_classes = len(fam2label)
     # Retrieve pretrained model
-    model = ProtCNN(num_classes) # make this flexible later
+    model = ProtCNN(num_classes, args.lr, args.momentum, args.weight_decay, args.milestones, args.gamma) # make this flexible later
     model.load_state_dict(torch.load(args.model_weights_file_path)) # allow user to use own model later
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.data_dir, args.batch_size)
