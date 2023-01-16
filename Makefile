@@ -26,7 +26,7 @@ build:
 	docker build -t my_image .
 
 lint:
-	find . -type f -name "*.py" | xargs pylint
+	python pylint $(git ls-files '*.py')
 
 # Run the train command inside the container
 train:
