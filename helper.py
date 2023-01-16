@@ -99,10 +99,19 @@ def buildVocab(data, rare_AA_count)->dict:
     return word2id
     
 def evaluateModel(model, test_loader)->float:
-    #model.eval()
     accs = []
     with torch.no_grad():
         for batch in tqdm(test_loader):
             acc = model.validation_step(batch, 0, logging = False) # this zero doesnt matter
             accs.append(acc)
     return np.mean(accs)
+
+def getPreds(model, test_loader)->list:
+    preds = []
+    with torch.no_grad():
+        for batch in tqdm(test_loader):
+            x, _ = batch['sequence'], batch['target']
+            y_hat = model(x)
+            pred = torch.argmax(y_hat, dim=1) 
+            preds.append(pred)
+    return preds
