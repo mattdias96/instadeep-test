@@ -40,7 +40,7 @@ class TestModels(unittest.TestCase):
         """
         A unit test for the ProteinCNN forward function
         """
-        num_classes = 4
+        num_classes = 17930 #4
         lr = 0.1
         momentum = 0.9
         weight_decay = 0.01
