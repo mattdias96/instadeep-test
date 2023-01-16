@@ -16,6 +16,7 @@ class TestHelper(unittest.TestCase):
         # Test that the buildVocab function correctly builds a vocabulary from AA strings to unique integers
         train_data = ["AAA", "AAC", "AGG"]
         word2id = buildVocab(train_data, 1)
+        print(word2id)
         self.assertIsInstance(word2id, dict)
         self.assertEqual(len(word2id), 2)
         self.assertEqual(word2id["A"], 2)
