@@ -46,6 +46,7 @@ def main():
     loader = loadData(args.num_workers, word2id, fam2label, args.seq_max_len, args.train_dir, args.batch_size)
     # Create predictions
     preds = getPreds(model, loader["test"])
+    preds = preds.numpy()
     # Create a unique file name with the timestamp
     now = datetime.datetime.now()
     file_name = f"data_{now.strftime('%Y-%m-%d %H-%M-%S')}.csv"
