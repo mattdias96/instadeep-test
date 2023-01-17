@@ -100,9 +100,7 @@ def main():
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module
-    trainer = pl.Trainer(accelerator = 'gpu',
-                         devices=args.gpus,
-                         max_epochs=args.epochs)
+    trainer = pl.Trainer(gpus=args.gpus, max_epochs=args.epochs)
     # Load the data
     loader = loadData(args.num_workers, word2id, fam2label,
                       args.seq_max_len, args.train_dir, args.batch_size)
