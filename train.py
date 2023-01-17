@@ -80,8 +80,6 @@ def main():
                         type=str,
                         default="default",
                         help='File name to save trained model')
-    # optimizer
-    # learning rate scheduler format
 
     # Parse the command line arguments
     args = parser.parse_args()
