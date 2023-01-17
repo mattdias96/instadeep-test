@@ -30,7 +30,7 @@ lint:
 
 # Run the train command inside the container
 train:
-	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --gpus=1
+	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --gpus=0
 
 # Run the evaluate command inside the container
 evaluate:
