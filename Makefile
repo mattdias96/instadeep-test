@@ -1,6 +1,3 @@
-# Copied from https://github.com/shreyashankar/create-ml-app
-
-.PHONY: help lint run
 # Makefile variables
 VENV_NAME:=venv
 PYTHON=${VENV_NAME}/bin/python3
@@ -12,15 +9,6 @@ INPUT_DIM:=784
 HIDDEN_DIM:=128
 OUTPUT_DIM:=10
 
-.DEFAULT: help
-help:
-	@echo "make venv"
-	@echo "       prepare development environment, use only once"
-	@echo "make lint"
-	@echo "       run pylint"
-	@echo "make run"
-	@echo "       run project"
-
 # Build the Docker image
 build:
 	docker build -t my_image .
@@ -30,7 +18,7 @@ lint:
 
 # Run the train command inside the container
 train:
-	python train.py --train_dir="C:\Users\mathe\Documents\random_split" --gpus=0
+	python train.py --train_dir=$(train_dir) --gpus=$(gpu)
 
 # Run the evaluate command inside the container
 evaluate:
