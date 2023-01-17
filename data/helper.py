@@ -25,7 +25,7 @@ def reader(partition:str, data_path:str)->tuple:
     """
     data = []
     for file_name in os.listdir(os.path.join(data_path, partition)):
-        with open(os.path.join(data_path, partition, file_name), encoding="utf-8") as file:
+        with open(os.path.join(data_path, partition, file_name)) as file:
             data.append(pd.read_csv(file, index_col=None, usecols=["sequence", "family_accession"]))
 
     all_data = pd.concat(data)

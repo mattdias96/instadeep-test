@@ -96,7 +96,7 @@ def main():
     now = datetime.datetime.now()
     file_name = f"data_{now.strftime('%Y-%m-%d %H-%M-%S')}.csv"
     # Save prediction in file
-    with open(file_name, 'w', newline='', encoding="utf-8") as csvfile:
+    with open(file_name, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(preds)
 
