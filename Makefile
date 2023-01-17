@@ -18,7 +18,7 @@ lint:
 
 # Run the train command inside the container
 train:
-	docker run --rm -v $(PWD):/ -w / my_image python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
+	python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
 
 # Run the minitrain command inside the container
 minitrain:
@@ -37,4 +37,4 @@ test:
 
 # Get coverage of tests inside the container
 coverage:
-	coverage run -m unittest discover ke-s tests/ -p "test*.py"
+	coverage run -m unittest discover -s tests/ -p "test*.py"

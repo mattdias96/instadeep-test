@@ -6,3 +6,4 @@ COPY requirements.txt .
 
 # Install the required dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install coverage
