@@ -58,12 +58,16 @@ make predict train_dir="..." model_weights_file_path="..."
 # To evaluate the model on a given dataset
 make evaluate train_dir="..." model_weights_file_path="..."
 ```
+Alternatively, you can run each python command directly as in:
+```python
+python train.py --train_dir="..." --gpus="..." --lr="..." --momentum="..." --epochs="..." --batch_size="..."
+```
 The train command also allows for the arguments:
 - lr: learning rate
 - momentum: momentum of the optimzer
 - epochs: number of epochs in training
 - batch_size: number of samples in each batch
-- More to be added...
+- And more...
 
 
 ## Example
@@ -76,11 +80,6 @@ make minitrain gpus=1
 To run the unit tests for this project, you can use the following command:
 ```python
 make test
-```
-We also include a test coverage report which you can generate by running the command
-```python
-coverage run -m pytest
-coverage report
 ```
 
 ## Contact
