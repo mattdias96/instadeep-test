@@ -18,7 +18,7 @@ lint:
 
 # Run the train command inside the container
 train:
-	docker run --rm -v instadeep-test:/ -w / my_image python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
+	docker run --rm -v $(PWD):/ -w / my_image python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
 
 # Run the minitrain command inside the container
 minitrain:
