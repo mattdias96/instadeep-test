@@ -22,11 +22,11 @@ train:
 
 # Run the evaluate command inside the container
 evaluate:
-	python evaluate.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
+	python evaluate.py --train_dir="$(train_dir)" --model_weights_file_path="$(model_weights_file_path)"
 
 # Run the predict command inside the container
 predict:
-	python predict.py --train_dir="C:\Users\mathe\Documents\random_split" --model_weights_file_path="D:\instadeep\saved_models\test.pth"
+	python predict.py --train_dir="$(train_dir)" --model_weights_file_path="$(model_weights_file_path)"
 # Test functions command inside the container
 test:
 	python -m unittest discover -s tests/ -p "test*.py"
