@@ -37,4 +37,4 @@ test:
 
 # Get coverage of tests inside the container
 coverage:
-	coverage run -m unittest discover -s tests/ -p "test*.py"
+	coverage run -m unittest discover ke-s tests/ -p "test*.py"
