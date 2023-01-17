@@ -18,7 +18,7 @@ lint:
 
 # Run the train command inside the container
 train:
-	python train.py --train_dir=$(train_dir) --gpus=$(gpus)
+	python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
 
 # Run the evaluate command inside the container
 evaluate:
