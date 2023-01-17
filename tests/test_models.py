@@ -7,7 +7,7 @@ import unittest
 import torch
 import torch.nn.functional as F
 
-from models import Lambda, ResidualBlock
+from models.helper import Lambda, ResidualBlock
 from models.protcnn import ProtCNN
 
 class TestModels(unittest.TestCase):
