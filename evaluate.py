@@ -4,7 +4,7 @@ a given model on a given test set
 """
 import argparse
 
-import lightning as pl
+import pytorch_lightning as pl
 import torch
 
 from utils import loadData, buildLabels, buildVocab, evaluateModel

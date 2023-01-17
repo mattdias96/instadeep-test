@@ -6,7 +6,7 @@ by the user
 
 import argparse
 
-import lightning as pl
+import pytorch_lightning as pl
 import torch
 
 from utils import loadData, buildLabels, buildVocab
@@ -96,7 +96,7 @@ def main():
     # Initialize the model
     # Create a class for this and make it flexible later
     model = ProtCNN(num_classes, args.lr, args.momentum,
-                    args.weight_decay, args.milestones, args.gamma)
+                    args.weight_decay, args.milestones, args.gamma, len(word2id))
     # Set random seed
     pl.seed_everything(args.random_seed)
     # Initialize trainer module

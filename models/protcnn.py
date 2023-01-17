@@ -5,7 +5,7 @@ to run the ProtCNN model as described in
 https://www.biorxiv.org/content/10.1101/626507v3.full
 """
 import torch
-import lightning as pl
+import pytorch_lightning as pl
 import torchmetrics
 import torch.nn.functional as F
 
@@ -17,7 +17,7 @@ class ProtCNN(pl.LightningModule):
     for protein sequence classification
     '''
     def __init__(self, num_classes:int, lr:float, momentum:float, weight_decay:float,
-                 milestones:list, gamma:float, num_aa=22):
+                 milestones:list, gamma:float, num_aa):
         super().__init__()
         # Define architecture of the model
         self.model = torch.nn.Sequential(

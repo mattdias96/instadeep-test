@@ -6,7 +6,7 @@ import argparse
 import datetime
 import csv
 
-import lightning as pl
+import pytorch_lightning as pl
 import torch
 
 from utils import loadData, buildLabels, buildVocab, getPreds
