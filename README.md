@@ -2,7 +2,7 @@
 
 # InstaDeep - Machine Learning Engineer Coding Test
 
-![A screenshot of the project](https://media.nature.com/lw1024/magazine-assets/d41586-020-03348-4/d41586-020-03348-4_18633156.jpg)
+![A screenshot of the project](https://singularityhub.com/wp-content/uploads/2021/07/AI-generated-protein-structure.jpg)
 
 
 <!--
