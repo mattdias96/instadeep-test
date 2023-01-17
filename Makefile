@@ -18,7 +18,11 @@ lint:
 
 # Run the train command inside the container
 train:
-	python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
+	docker run -it --rm -v $(PWD):/app -w /app my_image python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
+
+# Run the minitrain command inside the container
+minitrain:
+	python train.py --train_dir="mini-dataset" --gpus=$(gpus)
 
 # Run the evaluate command inside the container
 evaluate:
