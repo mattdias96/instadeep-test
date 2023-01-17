@@ -34,7 +34,3 @@ predict:
 # Test functions command inside the container
 test:
 	python -m unittest discover -s tests/ -p "test*.py"
-
-# Get coverage of tests inside the container
-coverage:
-	coverage run -m unittest discover -s tests/ -p "test*.py"
