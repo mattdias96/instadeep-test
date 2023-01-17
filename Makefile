@@ -18,11 +18,11 @@ lint:
 
 # Run the train command inside the container
 train:
-	python train.py --train_dir="$(train_dir)" --gpus=$(gpus) --lr=$(lr) --momentum=$(momentum) --epochs=$(epochs) --batch_size$(batch_size)
+	python train.py --train_dir="$(train_dir)" --gpus=$(gpus)
 
 # Run the minitrain command inside the container
 minitrain:
-	python train.py --train_dir="mini-dataset" --gpus=$(gpus) --lr=$(lr) --momentum=$(momentum) --epochs=$(epochs) --batch_size$(batch_size)
+	python train.py --train_dir="mini-dataset" --gpus=$(gpus)
 
 # Run the evaluate command inside the container
 evaluate:
