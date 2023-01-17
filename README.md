@@ -1,6 +1,6 @@
 <div align="center">
 
-# InstaDeep - Machine Learning Engineer Coding Test
+# Protein Classifier - InstaDeep - MLE Coding Test
 
 ![Folded protein](https://singularityhub.com/wp-content/uploads/2021/07/AI-generated-protein-structure.jpg)
 
@@ -36,11 +36,11 @@ To replicate the docker image, run
 ```python
 docker build -t myimage .
  ```
- Alternatively, you can anually install all requirements:
+ Alternatively, you can manually install all requirements:
  ```python
 pip install -r requirements.txt
  ```
-Make sure you have docker and make installed in your computer.
+Make sure you have [docker](https://www.docker.com/) and [make](https://gnuwin32.sourceforge.net/packages/make.htm) installed in your computer.
 
 ## Usage
 For quick usage, the make file allows 3 different commands:
@@ -52,7 +52,7 @@ make predict
 # To evaluate the model on a given dataset
 make evaluate
 ```
-For advanced usage, the user can call the function directly:
+To have the ability to change parameters, you can call the function directly:
 ```python
 
 ```
