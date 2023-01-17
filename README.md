@@ -25,34 +25,36 @@ This github repo was develped for the InstaDeep Machine Learning Engineer Coding
 - [Contact](#contact)
 
 ## Installation
-First, install dependencies
+First, clone the repository
 ```bash
 # clone project
 git clone https://github.com/mattdias96/instadeep-test.git
 
-# install project - adjust this for when I have the docker working
 cd instadeep-test
-pip install -e .
-pip install -r requirements.txt
  ```
 To replicate the docker image, run
 ```python
 docker build -t myimage .
  ```
+ Alternatively, you can anually install all requirements:
+ ```python
+pip install -r requirements.txt
+ ```
 Make sure you have docker and make installed in your computer.
 
 ## Usage
-For quick usage, the make file allows 4 different commands:
+For quick usage, the make file allows 3 different commands:
 ```python
 # To train the model on the full dataset
 make train
 # To predict the model on a given dataset
 make predict
 # To evaluate the model on a given dataset
-make predict
+make evaluate
 ```
 For advanced usage, the user can call the function directly:
 ```python
+
 ```
 Remember to explain arguments
 
