@@ -8,7 +8,7 @@ import torch
 import lightning as pl
 import torchmetrics
 
-from models import ResidualBlock, Lambda
+from models.helper import ResidualBlock, Lambda
 
 class ProtCNN(pl.LightningModule):
     '''
