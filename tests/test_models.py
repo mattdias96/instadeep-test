@@ -68,9 +68,10 @@ class TestModels(unittest.TestCase):
         weight_decay = 0.01
         milestones = [5,10]
         gamma = 0.1
-        x = torch.randn(500, 22, 120)
+        num_aa = 22
+        x = torch.randn(500, num_aa, 120)
         protcnn = ProtCNN(num_classes, lr, momentum,
-                          weight_decay, milestones, gamma)
+                          weight_decay, milestones, gamma, num_aa)
 
         # Check if the output has the expected shape
         output = protcnn(x)
