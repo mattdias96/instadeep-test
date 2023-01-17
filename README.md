@@ -35,14 +35,31 @@ cd instadeep-test
 pip install -e .
 pip install -r requirements.txt
  ```
-Also install make
+To replicate the docker image, run
+```python
+docker build -t myimage .
+ ```
+Make sure you have docker and make installed in your computer.
 
 ## Usage
-The make file allows 4 different commands Next, navigate to any file and run it.
+For quick usage, the make file allows 4 different commands:
+```python
+# To train the model on the full dataset
+make train
+# To train the model on the full dataset
+make train
+```
+For advanced usage, the user can call the function directly:
+```python
+```
+Remember to explain arguments
 
 
-## Examples
-
+## Example
+To run a smaller version of the dataset and check train and dev set accuracies, run
+```python
+make train_small
+```
 
 ## Testing
 To run the tests for this project, you can use the following command:
