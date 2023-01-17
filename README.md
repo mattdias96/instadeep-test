@@ -2,7 +2,7 @@
 
 # InstaDeep - Machine Learning Engineer Coding Test
 
-Add Insta Deep Picture
+![A screenshot of the project](https://media.nature.com/lw1024/magazine-assets/d41586-020-03348-4/d41586-020-03348-4_18633156.jpg)
 
 
 <!--
