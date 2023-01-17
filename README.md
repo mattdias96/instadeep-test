@@ -46,8 +46,10 @@ For quick usage, the make file allows 4 different commands:
 ```python
 # To train the model on the full dataset
 make train
-# To train the model on the full dataset
-make train
+# To predict the model on a given dataset
+make predict
+# To evaluate the model on a given dataset
+make predict
 ```
 For advanced usage, the user can call the function directly:
 ```python
@@ -71,6 +73,7 @@ We also include a test coverage report which you can generate by running the com
 coverage run -m pytest
 coverage report
 ```
+Talk about lint here?
 
 ## Contact
 - Author: Matheus P. Dias
