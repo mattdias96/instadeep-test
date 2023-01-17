@@ -43,15 +43,19 @@ pip install -r requirements.txt
 Make sure you have [docker](https://www.docker.com/) and [make](https://gnuwin32.sourceforge.net/packages/make.htm) installed in your computer.
 
 ## Usage
-For quick usage, the make file allows 3 different commands:
+For quick usage, the make file allows 3 different commands: train, predict and evaluate.
+The user should choose the associated parameters: train_dir (file path for dataset),
+gpus (1 for use GPU or 0 for CPU), model_weights_file_path (file path for .pth file with weights
+of trained model).
 ```python
 # To train the model on the full dataset
-make train
+make train train_dir="..." gpus=1
 # To predict the model on a given dataset
-make predict
+make predict train_dir="..." model_weights_file_path="..."
 # To evaluate the model on a given dataset
-make evaluate
+make evaluate train_dir="..." model_weights_file_path="..."
 ```
+
 To have the ability to change parameters, you can call the function directly:
 ```python
 
