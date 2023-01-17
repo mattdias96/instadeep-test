@@ -9,7 +9,7 @@ import csv
 import lightning as pl
 import torch
 
-from helper import loadData, buildLabels, buildVocab, getPreds
+from utils import loadData, buildLabels, buildVocab, getPreds
 from data import reader
 from models.protcnn import ProtCNN
 

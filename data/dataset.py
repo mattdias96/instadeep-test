@@ -6,7 +6,7 @@ of sequences
 import numpy as np
 import torch
 
-from helper import reader
+from data.helper import reader
 
 
 class SequenceDataset(torch.utils.data.Dataset):

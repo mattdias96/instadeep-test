@@ -7,7 +7,7 @@ import argparse
 import lightning as pl
 import torch
 
-from helper import loadData, buildLabels, buildVocab, evaluateModel
+from utils import loadData, buildLabels, buildVocab, evaluateModel
 from data import reader
 from models.protcnn import ProtCNN
 

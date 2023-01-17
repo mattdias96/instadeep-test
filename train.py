@@ -9,7 +9,7 @@ import argparse
 import lightning as pl
 import torch
 
-from helper import loadData, buildLabels, buildVocab
+from utils import loadData, buildLabels, buildVocab
 
 from data.helper import reader
 from models.protcnn import ProtCNN

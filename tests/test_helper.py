@@ -7,7 +7,7 @@ import unittest
 import pandas as pd
 import torch
 
-from helper import buildVocab, buildLabels, loadData
+from utils import buildVocab, buildLabels, loadData
 
 class TestHelper(unittest.TestCase):
     """
