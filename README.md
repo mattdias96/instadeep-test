@@ -2,7 +2,7 @@
 
 # InstaDeep - Machine Learning Engineer Coding Test
 
-![A screenshot of the project](https://singularityhub.com/wp-content/uploads/2021/07/AI-generated-protein-structure.jpg)
+![Folded protein](https://singularityhub.com/wp-content/uploads/2021/07/AI-generated-protein-structure.jpg)
 
 
 <!--
@@ -15,7 +15,7 @@ This project is an implementation of a protein classifier inspired by the ProtCN
 in the paper ["Using Deep Learning to Annotate the Protein Universe"](https://www.biorxiv.org/content/10.1101/626507v2.full).
 The model is trained on the [PFAM dataset](https://www.kaggle.com/datasets/googleai/pfam-seed-random-split) and its performance
 is measured on multi-class accuracy.
-This github repo was develped for the InstaDeep Machine Learning Engineer Coding Test
+This github repo was develped for the InstaDeep Machine Learning Engineer Coding Test.
 
 ## Table of Contents
 - [Installation](#installation)
