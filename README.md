@@ -25,6 +25,9 @@ This github repo was develped for the InstaDeep Machine Learning Engineer Coding
 - [Contact](#contact)
 
 ## Installation
+
+Make sure you have [docker](https://www.docker.com/) and [make](https://gnuwin32.sourceforge.net/packages/make.htm) installed in your computer
+
 First, clone the repository
 ```bash
 # clone project
@@ -34,13 +37,13 @@ cd instadeep-test
  ```
 To replicate the docker image, run
 ```python
-docker build -t myimage .
+make build
  ```
  Alternatively, you can manually install all requirements:
  ```python
 pip install -r requirements.txt
  ```
-Make sure you have [docker](https://www.docker.com/) and [make](https://gnuwin32.sourceforge.net/packages/make.htm) installed in your computer.
+ and use Python==3.10.9
 
 ## Usage
 For quick usage, the make file allows 3 different commands: train, predict and evaluate.
@@ -55,22 +58,22 @@ make predict train_dir="..." model_weights_file_path="..."
 # To evaluate the model on a given dataset
 make evaluate train_dir="..." model_weights_file_path="..."
 ```
-
-To have the ability to change parameters, you can call the function directly:
-```python
-
-```
-Remember to explain arguments
+The train command also allows for the arguments:
+- lr: learning rate
+- momentum: momentum of the optimzer
+- epochs: number of epochs in training
+- batch_size: number of samples in each batch
+- More to be added...
 
 
 ## Example
 To run a smaller version of the dataset and check train and dev set accuracies, run
 ```python
-make train_small
+make minitrain gpus=1
 ```
 
 ## Testing
-To run the tests for this project, you can use the following command:
+To run the unit tests for this project, you can use the following command:
 ```python
 make test
 ```
@@ -79,7 +82,6 @@ We also include a test coverage report which you can generate by running the com
 coverage run -m pytest
 coverage report
 ```
-Talk about lint here?
 
 ## Contact
 - Author: Matheus P. Dias
